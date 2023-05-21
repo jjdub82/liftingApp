@@ -1,0 +1,70 @@
+*{
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Red Hat Display', sans-serif;
+}
+
+.flex-container{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+.item {
+    flex-basis: 1;
+    flex-grow: 3;
+    min-width: 340px;
+    min-height: 400px;
+
+}
+
+.card {
+    border:1.5px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px rgb(65, 72, 77);
+    min-height: 400px;
+}
+
+.card-text{
+    min-height: 250px;
+}
+form{  
+    margin: 10px auto;
+    background-color:rgba(67, 153, 153, 0.661);
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    padding: 2rem;
+    max-height: 250px;
+}
+form input{
+    padding: 10px;
+    border:1px solid lightgray;
+    outline:none;
+    background-color: white;
+    font-size: 2rem;
+    display: inline-block;
+    
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+.list-group-item :hover{
+    border: 2px solid blue
+}
+
+#groupInput::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: lightgray;
+    opacity: 1; /* Firefox */
+}
+
+#groupInput::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: lightgray;
+}
+
+#groupInput::-ms-input-placeholder { /* Microsoft Edge */
+    color: lightgray;
+}
