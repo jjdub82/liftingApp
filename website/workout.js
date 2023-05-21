@@ -123,6 +123,7 @@ document.getElementById('save-sets').addEventListener('click', function() {
     // Retrieve the exercise name from the select element
     const exerciseSelect = document.getElementById('exercise-select');
     const exerciseName = exerciseSelect.value;
+    let sessionID2 = sessionID
   
     // // Retrieve the session ID from local storage
     // const session = JSON.parse(localStorage.getItem('currentSession'));
@@ -143,7 +144,7 @@ document.getElementById('save-sets').addEventListener('click', function() {
       // Create the set data object
       const setData = {
         exercise: exerciseName,
-        sessionID: sessionID,
+        session_id: sessionID2,
         weight,
         reps,
         set_number: setNumber
