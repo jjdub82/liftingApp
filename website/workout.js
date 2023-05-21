@@ -17,7 +17,7 @@ function getUrlParameter(name) {
   console.log('Date:', date);
 
   const sessionID = group + ' - ' + date;
-    console.log('Session ID:', sessionID);
+   
 
 document.addEventListener('DOMContentLoaded', function(){
 
@@ -125,10 +125,6 @@ document.getElementById('save-sets').addEventListener('click', function() {
     const exerciseName = exerciseSelect.value;
     let sessionID2 = sessionID
   
-    // // Retrieve the session ID from local storage
-    // const session = JSON.parse(localStorage.getItem('currentSession'));
-    // const sessionID = session ? session.id : null;
-  
     // Iterate through each set row
     const setRows = document.querySelectorAll('#sets-container > div');
     const setsData = [];
@@ -136,11 +132,11 @@ document.getElementById('save-sets').addEventListener('click', function() {
     setRows.forEach((setRow, index) => {
       const weightInput = setRow.querySelector('input[type="number"][placeholder="Weight"]');
       const repsInput = setRow.querySelector('input[type="number"][placeholder="Reps"]');
-  
+    
       const weight = weightInput.value;
       const reps = repsInput.value;
       const setNumber = index + 1; // Set number is the index + 1
-  
+
       // Create the set data object
       const setData = {
         exercise: exerciseName,
@@ -152,7 +148,40 @@ document.getElementById('save-sets').addEventListener('click', function() {
       console.log('set data:  '+setData)
   
       setsData.push(setData);
+// Create a 'set display' for the set
+let setDisplay = document.createElement('div');
+setDisplay.className = 'set-display';
+
+let exHeading = document.createElement('h5');
+exHeading.textContent = `Exercise: ${exerciseName}`
+setDisplay.appendChild(exHeading);
+
+let exSetNum = document.createElement('p');
+exSetNum.className = 'lead';
+exSetNum.textContent = `Set # ${setNumber}`;
+setDisplay.appendChild(exSetNum);
+
+let exWeight = document.createElement('p');
+exWeight.className = 'lead';
+exWeight.textContent = `Weight: ${weight} lbs`;
+setDisplay.appendChild(exWeight);
+
+let exReps = document.createElement('p');
+exReps.className = 'lead';
+exReps.textContent = `Reps: ${reps}`;
+setDisplay.appendChild(exReps);
+
+
+// setDisplay.textContent = `Exercise: ${exerciseName}, Set: ${setNumber}, Weight: ${weight}, Reps: ${reps}`;
+
+// Add the set display to a 'sets display' container
+document.getElementById('sets-display-container').appendChild(setDisplay);
+
+
+
     });
+
+    
   
     // Send the sets data to the server
     fetch('/api/sets', {
@@ -176,3 +205,4 @@ document.getElementById('save-sets').addEventListener('click', function() {
 
   });
   
+ 

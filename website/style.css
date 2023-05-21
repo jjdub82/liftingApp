@@ -68,3 +68,25 @@ form input{
 #groupInput::-ms-input-placeholder { /* Microsoft Edge */
     color: lightgray;
 }
+
+#sets-display-container{
+    display: flex;
+    justify-content: space-around;
+    /* margin-right: 1rem; */
+    margin-left: 1rem;
+    gap: 10px;
+    flex-wrap: wrap;
+
+}
+
+.set-display{
+    border: 1px solid lightgray;
+    min-height: 5rem;
+    max-width: 600px;
+    min-width: 375;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 3px 5px gray;
+ 
+
+}

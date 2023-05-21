@@ -90,6 +90,23 @@ app.post('/api/sets', async (req, res) => {
   
 
 
+  app.get('/api/sets/:sessionId', async (req, res) => {
+    const sessionId = req.params.sessionId;
+    console.log("Received sessionID: ", sessionId);
+  
+    try {
+        const data = await db.any('SELECT * FROM sets WHERE session_id = $1', [sessionId]); 
+        console.log(data);
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.json({ error: 'An error occurred while fetching data.' });
+    }
+});
+
+
+
+
 
 app.listen(port, () => {
     console.log(` listening on port ${port}`)
