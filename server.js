@@ -6,10 +6,10 @@ require('dotenv').config();
 
 
 const port = process.env.PORT || 3000;
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/website/yourfile.html'));
+});
 
-app.get('/', (req, res) => {
-  res.send('Hell0000000!')
-})
 
 
 
