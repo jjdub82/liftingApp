@@ -3,17 +3,20 @@ const app = express()
 const bodyParser = require('body-parser');
 const db = require("./db.js");
 require('dotenv').config();
+const path = require('path');
 
+
+app.use(express.static('website'));
 
 const port = process.env.PORT || 3000;
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/website/yourfile.html'));
+    res.sendFile(path.join(__dirname + '/website/index.html'));
 });
 
 
 
 
-app.use(express.static('website'));
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
