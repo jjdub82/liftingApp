@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const db = require("./db.js");
 require('dotenv').config();
 const path = require('path');
+const fetch = require('node-fetch');
+
 
 
 app.use(express.static('website'));
