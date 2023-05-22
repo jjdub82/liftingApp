@@ -69,13 +69,23 @@
         <select class="form-control" id = 'exercise-select'></select>
     </form>
 </div>
-<div class = 'container-fluid -mx-2 mt-3'>
+<div class = 'container-fluid mx-2 mt-3'>
+    <div class="row mx-2">
+        <div class="col-md-4"><button id="start-button" >Start Timer</button></div>
+        <div class="col-md-4"><div id="timer" class = 'lead'></div></div>
+        <div class="col-md-4"><button id="stop-button" >Stop Timer</button></div>
+        </div>
+        <div class = 'row mx-2'>
+            <button id="reset-button">Reset</button>
+        </div>
+
+
 <div class = 'row'>
     <i class="fa-sharp fa-light fa-plus fa-5x" id = 'new-set'></i>
 </div>
 <div id = 'sets-container'></div>
 <div id = 'button-container'>
-    <button id="save-sets" class="btn btn-primary mt-3">Save Sets</button>
+    <button id="save-sets" class="btn btn-dark mt-3">Save Sets</button>
 </div>
 <hr>
 </div>

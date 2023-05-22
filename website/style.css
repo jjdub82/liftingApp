@@ -24,11 +24,11 @@
     border:1.5px solid lightgray;
     border-radius: 10px;
     box-shadow: 3px 3px 3px rgb(65, 72, 77);
-    min-height: 400px;
+
 }
 
 .card-text{
-    min-height: 250px;
+
 }
 form{  
     margin: 10px auto;

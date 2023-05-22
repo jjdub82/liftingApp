@@ -71,23 +71,19 @@ app.get('/api/exercises/:muscle', async (req, res) => {
     }
 });
 
-app.post('/api/sets', async (req, res) => {
-    const setsData = req.body;
-  
+app.get('/api/sets', async (req, res) => {
     try {
-      // Iterate through the setsData array and insert each set into the 'sets' table
-      for (const setData of setsData) {
-        const { exercise, session_id, weight, reps, set_number } = setData;
-        await db.none('INSERT INTO sets (exercise, session_id, weight, reps, set_number) VALUES ($1, $2, $3, $4, $5)', [exercise, session_id, weight, reps, set_number]);
-      }
-  
-      res.json({ message: 'Sets saved successfully.' });
+        const sets = await db.any('SELECT * FROM sets');
+        console.log(sets)
+        res.json(sets);
     } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: 'An error occurred while saving the sets.' });
+        console.error(err);
+        res.status(500).json({ error: 'An error occurred while fetching records.' });
     }
-  });
-  
+});
+
+   
+   
 
 
   app.get('/api/sets/:sessionId', async (req, res) => {

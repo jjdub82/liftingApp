@@ -205,4 +205,40 @@ document.getElementById('sets-display-container').appendChild(setDisplay);
 
   });
   
- 
+  let seconds = 0;
+  let timer;
+  
+  function startTimer() {
+      // Stop any existing timer
+      stopTimer();
+      
+      // Start a new timer
+      timer = setInterval(function() {
+          seconds++;
+          // Display the time
+          document.getElementById('timer').textContent = seconds + ' seconds';
+      }, 1000);
+  }
+  
+  function stopTimer() {
+      if(timer) {
+          clearInterval(timer);
+          timer = null;
+      }
+  }
+  
+  document.getElementById('start-button').addEventListener('click', startTimer);
+  document.getElementById('stop-button').addEventListener('click', stopTimer);
+  
+  function resetTimer() {
+    // Stop the timer
+    stopTimer();
+    
+    // Reset the time
+    seconds = 0;
+    
+    // Update the display
+    document.getElementById('timer').textContent = '0 seconds';
+}
+
+document.getElementById('reset-button').addEventListener('click', resetTimer);
