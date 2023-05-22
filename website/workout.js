@@ -148,6 +148,9 @@ document.getElementById('save-sets').addEventListener('click', function() {
       console.log('set data:  '+setData)
   
       setsData.push(setData);
+
+
+
 // Create a 'set display' for the set
 let setDisplay = document.createElement('div');
 setDisplay.className = 'set-display';
@@ -194,11 +197,12 @@ document.getElementById('sets-display-container').appendChild(setDisplay);
     .then(response => response.json())
     .then(data => {
       console.log('Sets saved successfully:', data);
-      console.log('Sets saved successfully:', data);
+  
       // Clear the set rows
       const setsContainer = document.getElementById('sets-container');
       setsContainer.innerHTML = '';
       // Handle the response as needed
+      clearNewSets();
     })
     .catch(error => console.error('Error:', error));
 
@@ -242,3 +246,16 @@ document.getElementById('sets-display-container').appendChild(setDisplay);
 }
 
 document.getElementById('reset-button').addEventListener('click', resetTimer);
+
+function clearNewSets() {
+    // Get all input elements within 'new-sets' container
+    let inputs = document.querySelectorAll('#sets-container input[type="number"]');
+
+    // Loop through each input and clear its value
+    inputs.forEach(input => {
+        input.value = '';
+    });
+
+    // Clear setCount
+    setCount = 0;
+}
