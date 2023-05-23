@@ -94,12 +94,12 @@ form input{
 .collapse{
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 2rem;
 }
 
 .histCard{
     min-width: 350px;
-    max-width: 30%;
+    
    
 }
