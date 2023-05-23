@@ -27,9 +27,9 @@
 
 }
 
-.card-text{
+/* .card-text{
 
-}
+} */
 form{  
     margin: 10px auto;
     background-color:rgba(67, 153, 153, 0.661);
@@ -89,4 +89,17 @@ form input{
     box-shadow: 5px 3px 5px gray;
  
 
+}
+
+.collapse{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 2rem;
+}
+
+.histCard{
+    min-width: 350px;
+    max-width: 25%;
+   
 }

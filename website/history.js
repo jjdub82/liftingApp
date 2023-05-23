@@ -30,25 +30,33 @@ fetch('/api/sets')
             const collapse = document.createElement('div');
             collapse.id = `collapse${index}`;
             collapse.className = 'collapse';
+            
 
             // For each set in the group, create a line in the card body
             sets.forEach(set => {
+
+                const histCard = document.createElement('div');
+                histCard.className = 'card histCard';
+                collapse.appendChild(histCard)
+
+
+
                 const exName = document.createElement('p');
-                exName.textContent = `${set.exercise}    `; 
+                exName.textContent = `${set.exercise}`; 
                 exName.className = 'lead mx-4'
                 
-                collapse.appendChild(exName);
+                histCard.appendChild(exName);
 
                 const exWeight = document.createElement('p');
                 exWeight.textContent = `${set.weight} lbs.`; 
                 exWeight.className = 'lead mx-4'
-                collapse.appendChild(exWeight);
+                histCard.appendChild(exWeight);
 
                 const exReps = document.createElement('p');
                 exReps.textContent = `Reps: ${set.reps} Reps`; 
                 exReps.className = 'lead mx-4'
                 exReps.style = 'border-bottom: 1px solid lightgray; padding-botton: 5px'
-                collapse.appendChild(exReps);
+                histCard.appendChild(exReps);
 
 
 
