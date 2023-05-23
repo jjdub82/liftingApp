@@ -96,13 +96,17 @@ document.getElementById('new-set').addEventListener('click', function() {
   // Create the set number display
   let setNumber = document.createElement('span');
   setNumber.textContent = 'Set ' + (++setCount) + ': '; // Increment the set number
-  setNumber.className = 'display-5 mx-2 p-2'
+  setNumber.className = 'lead mx-2 p-2'
   newRow.appendChild(setNumber);
+
+    // Create line break
+    let lineBreak = document.createElement('br');
+    newRow.appendChild(lineBreak);
 
   // Create the weight input
   let weightInput = document.createElement('input');
   weightInput.type = 'number';
-  weightInput.className = 'form-control mx-2 p-2 mt-3'
+  weightInput.className = 'mx-2 p-2 mt-3'
   weightInput.style = 'max-width:90%'
   weightInput.placeholder = 'Weight';
   newRow.appendChild(weightInput);
@@ -110,7 +114,7 @@ document.getElementById('new-set').addEventListener('click', function() {
   // Create the reps input
   let repsInput = document.createElement('input');
   repsInput.type = 'number';
-  repsInput.className = 'form-control mx-2 p-2 mt-2'
+  repsInput.className = 'mx-2 p-2 mt-2'
   repsInput.style = 'max-width:90%'
   repsInput.placeholder = 'Reps';
   newRow.appendChild(repsInput);
@@ -147,7 +151,21 @@ document.getElementById('save-sets').addEventListener('click', function() {
       };
       console.log('set data:  '+setData)
   
-      setsData.push(setData);
+      setsData.push(setData)
+      .then  
+        // Get all input elements within 'new-sets' container
+        let inputs = document.querySelectorAll('#sets-container input[type="number"]');
+    
+        // Loop through each input and clear its value
+        inputs.forEach(input => {
+            input.value = '';
+        });
+    
+        // Clear setCount
+        setCount = 0;
+    
+      
+      
 
 
 
@@ -179,7 +197,6 @@ setDisplay.appendChild(exReps);
 
 // Add the set display to a 'sets display' container
 document.getElementById('sets-display-container').appendChild(setDisplay);
-
 
 
     });
@@ -247,15 +264,3 @@ document.getElementById('sets-display-container').appendChild(setDisplay);
 
 document.getElementById('reset-button').addEventListener('click', resetTimer);
 
-function clearNewSets() {
-    // Get all input elements within 'new-sets' container
-    let inputs = document.querySelectorAll('#sets-container input[type="number"]');
-
-    // Loop through each input and clear its value
-    inputs.forEach(input => {
-        input.value = '';
-    });
-
-    // Clear setCount
-    setCount = 0;
-}
