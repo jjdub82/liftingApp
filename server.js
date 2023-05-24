@@ -109,16 +109,36 @@ app.get('/api/sets', async (req, res) => {
 
 
 
-app.get('/api/nutrition/:query', async (req, res) => {
-    const name = req.params.name;
-    const response = await fetch('https://api.api-ninjas.com/v1/nutrition?query=' + query, {
-      method: 'GET',
-      headers: { 'X-Api-Key': process.env.API_KEY }
-    });
-    const data = await response.json();
-    res.json(data);
-    console.log(data)
-  });
+// app.get('/api/nutrition/:query', async (req, res) => {
+//     const name = req.params.name;
+//     const response = await fetch('https://api.api-ninjas.com/v1/nutrition?query=' + query, {
+//       method: 'GET',
+//       headers: { 'X-Api-Key': process.env.API_KEY }
+//     });
+//     const data = await response.json();
+//     res.json(data);
+//     console.log(data)
+//   });
+
+  app.get('/fetch-nutrition', (req, res) => {
+    var requestOptions = {
+        method: 'GET',
+        headers: {
+            "X-Api-Key": process.env.API_KEY
+        },
+        redirect: 'follow'
+    };
+
+    let ingredient = req.query.ingredient;  // assuming you are sending ingredient as a query parameter
+
+    fetch("https://api.api-ninjas.com/v1/nutrition?query="+ ingredient, requestOptions)
+        .then(response => response.json())
+        .then(data => {
+            res.json(data);   // send the data to client
+        })
+        .catch(error => console.error('Error:', error));
+});
+
 
 
 

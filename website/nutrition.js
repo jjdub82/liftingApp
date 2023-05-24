@@ -15,9 +15,9 @@ document.getElementById('submitIngredient').addEventListener('click', function()
 
     let ingredient = document.getElementById('ingredientInput').value
 
-    fetch("https://api.api-ninjas.com/v1/nutrition?query="+ ingredient, requestOptions)
-        .then(response => response.json())
-        .then(data => {
+    fetch(`/fetch-nutrition?ingredient=${ingredient}`)
+    .then(response => response.json())
+    .then(data => {
             data.forEach(item => {
                 // Create a new row and cells
                 const row = document.createElement('tr');
