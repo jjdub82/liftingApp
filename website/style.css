@@ -15,8 +15,8 @@
 .item {
     flex-basis: 1;
     flex-grow: 3;
-    min-width: 340px;
-    min-height: 400px;
+    /* min-width: 400px; */
+    /* min-height: 400px; */
 
 }
 
@@ -122,3 +122,4 @@ form input{
     font-weight: 700;
 
 }
+
