@@ -44,16 +44,32 @@
       </nav>
     <div class = 'container-fluid'>
 
-    <h1 class = 'display-3'>Build a Recipe...Count the Calories...track the Macros...or Not...I don't care</h1>
+    <h1 class = 'display-3'>What are you puting in your body?</h1>
 
-    <form>
-        <input type = 'text' id="ingredientInput" class = 'form-control' placeholder="Enter the ingredient and portion size...">
-       
+    <form id =nutrition-form>
+        <div class="row">
+        <div class="col-auto">
+        <input type = 'text' id="ingredientInput" class = 'form-control' placeholder="Enter the ingredient and portion..." style = 'width: 20rem;'></div>
+        <!-- <div class="col-auto">
+        <input type = 'text' id="portion" class = 'form-control' placeholder="and portion size..." style = 'width: 10rem'></div>
+        <div class="col-auto">
+        <input type = 'text' id="unit" list= 'datalistOptions' class = 'form-control' placeholder="and measurement..." style = 'width: 10rem;'></div>
+            <datalist id = 'datalistOptions'>
+                <option value = 'g'></option>
+                <option value = 'oz'></option>
+                <option value = 'lbs'></option>
+                <option value = 'c'></option>
+                <option value = 'tsp'></option>
+                <option value = 'tbsp'></option>
+            </datalist> -->
+    
+    </div>
+        <button type="submit" class = 'btn btn-lg btn-dark mt-3' id="submitIngredient">See what's in there!</button>
+
     </form>
-    <button type="submit" class = 'btn btn-lg btn-dark m-3' id="submitIngredient">See what's in there!</button>
 
     <div class = 'flex-container' id = 'nutrition-container'>
-        
+        <div class="table-responsive">
         <table id="nutritionTable" class = 'table'>
             <tr>
                 <th>Name</th>
@@ -70,6 +86,7 @@
                 <th>Sugar (g)</th>
             </tr>
         </table>
+        </div>
     </div>
 
         </div>

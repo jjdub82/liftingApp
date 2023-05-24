@@ -1,7 +1,7 @@
 let allData = []; // Declare this at the top of your script
 
-document.getElementById('submitIngredient').addEventListener('click', function() {
-    // Clear out the previous results
+document.getElementById('nutrition-form').addEventListener('submit', function(e) {
+    event.preventDefault();
     const table = document.getElementById('nutritionTable');
    
     var myHeaders = new Headers();
@@ -13,7 +13,10 @@ document.getElementById('submitIngredient').addEventListener('click', function()
         redirect: 'follow'
     };
 
-    let ingredient = document.getElementById('ingredientInput').value
+    let ingredient = 
+    // document.getElementById('portion').value + ' ' +
+    // document.getElementById('unit').value + ' '+
+    document.getElementById('ingredientInput').value
 
     fetch(`/fetch-nutrition?ingredient=${ingredient}`)
     .then(response => response.json())
@@ -58,6 +61,8 @@ document.getElementById('submitIngredient').addEventListener('click', function()
             table.appendChild(newTotalRow);
 
             document.getElementById('ingredientInput').value = '';
+            // document.getElementById('portion').value = '';
+            // document.getElementById('unit').value = '';
 
         })
         .catch(error => console.error('Error:', error));
