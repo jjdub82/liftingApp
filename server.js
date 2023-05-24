@@ -54,7 +54,7 @@ app.get('/api/exercises/:muscle', async (req, res) => {
     res.json(data);
   });
 
-  app.get('/api/exercises/:name', async (req, res) => {
+  app.get('/api/exercises/:name?offset=0', async (req, res) => {
     const name = req.params.name;
     const response = await fetch('https://api.api-ninjas.com/v1/exercises?name=' + name, {
       method: 'GET',
@@ -104,6 +104,22 @@ app.get('/api/sets', async (req, res) => {
         res.json({ error: 'An error occurred while fetching data.' });
     }
 });
+
+
+
+
+
+app.get('/api/nutrition/:query', async (req, res) => {
+    const name = req.params.name;
+    const response = await fetch('https://api.api-ninjas.com/v1/nutrition?query=' + query, {
+      method: 'GET',
+      headers: { 'X-Api-Key': process.env.API_KEY }
+    });
+    const data = await response.json();
+    res.json(data);
+    console.log(data)
+  });
+
 
 
 

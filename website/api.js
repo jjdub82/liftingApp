@@ -18,9 +18,10 @@ document.getElementById('fetch-button').addEventListener('click', function() {
         oldResults.innerHTML = '';
     }
     
+    let offset = 0;
 
     let muscle = getSelectedMuscle();
-    let url = 'https://api.api-ninjas.com/v1/exercises?muscle=' + muscle;
+    let url = `https://api.api-ninjas.com/v1/exercises?muscle=${muscle}&offset=${offset}`;
     console.log(url)
     
     fetch('/api/exercises/' + muscle)

@@ -103,3 +103,14 @@ form input{
     
    
 }
+
+.navbar{
+    box-shadow: 3px 1px 1px  rgb(88, 99, 106);
+}
+
+#ingredintInput{
+    min-width: 300px;
+    max-width: 700px;
+    padding: 5px;
+    font-size: 2rem;
+}
