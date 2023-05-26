@@ -36,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function(){
 )
 
 const muscleGroupDropdown = document.getElementById('muscle-group-select');
-const selectedMuscleGroup = muscleGroupDropdown.value;
-
-fetch('/api/exercises/' + selectedMuscleGroup)
+const muscle = muscleGroupDropdown.value;
+if(muscle){
+fetch('/api/exercises/' + muscle)
   .then(response => response.json())
   .then(exerciseNames => {
     let selectExercise = document.createElement('select');
@@ -55,7 +55,7 @@ fetch('/api/exercises/' + selectedMuscleGroup)
     document.getElementById('exercise-select').appendChild(selectExercise);
   })
   .catch(error => console.error('Error:', error));
-
+}
   document.getElementById('muscle-group-select').addEventListener('change', function() {
     // Get the selected muscle group
     let selectedMuscle = this.value;
@@ -139,70 +139,58 @@ document.getElementById('save-sets').addEventListener('click', function() {
     
       const weight = weightInput.value;
       const reps = repsInput.value;
+      let volume = repsInput.value * weightInput.value;
       const setNumber = index + 1; // Set number is the index + 1
-
+    
       // Create the set data object
       const setData = {
         exercise: exerciseName,
         session_id: sessionID2,
         weight,
         reps,
+        volume,
         set_number: setNumber
       };
-      console.log('set data:  '+setData)
-  
-      setsData.push(setData)
-      .then  
-        // Get all input elements within 'new-sets' container
-        let inputs = document.querySelectorAll('#sets-container input[type="number"]');
+      console.log('set data:  ', setData);
     
-        // Loop through each input and clear its value
-        inputs.forEach(input => {
-            input.value = '';
-        });
+      // Push the set data to the setsData array
+      setsData.push(setData);
     
-        // Clear setCount
-        setCount = 0;
+      // Clear the input values
+      weightInput.value = '';
+      repsInput.value = '';
     
-      
-      
-
-
-
-// Create a 'set display' for the set
-let setDisplay = document.createElement('div');
-setDisplay.className = 'set-display';
-
-let exHeading = document.createElement('h5');
-exHeading.textContent = `Exercise: ${exerciseName}`
-setDisplay.appendChild(exHeading);
-
-let exSetNum = document.createElement('p');
-exSetNum.className = 'lead';
-exSetNum.textContent = `Set # ${setNumber}`;
-setDisplay.appendChild(exSetNum);
-
-let exWeight = document.createElement('p');
-exWeight.className = 'lead';
-exWeight.textContent = `Weight: ${weight} lbs`;
-setDisplay.appendChild(exWeight);
-
-let exReps = document.createElement('p');
-exReps.className = 'lead';
-exReps.textContent = `Reps: ${reps}`;
-setDisplay.appendChild(exReps);
-
-
-// setDisplay.textContent = `Exercise: ${exerciseName}, Set: ${setNumber}, Weight: ${weight}, Reps: ${reps}`;
-
-// Add the set display to a 'sets display' container
-document.getElementById('sets-display-container').appendChild(setDisplay);
-
-
+      // Create a 'set display' for the set
+      let setDisplay = document.createElement('div');
+      setDisplay.className = 'set-display';
+    
+      let exHeading = document.createElement('h5');
+      exHeading.textContent = `Exercise: ${exerciseName}`;
+      setDisplay.appendChild(exHeading);
+    
+      let exSetNum = document.createElement('p');
+      exSetNum.className = 'lead';
+      exSetNum.textContent = `Set # ${setNumber}`;
+      setDisplay.appendChild(exSetNum);
+    
+      let exWeight = document.createElement('p');
+      exWeight.className = 'lead';
+      exWeight.textContent = `Weight: ${weight} lbs`;
+      setDisplay.appendChild(exWeight);
+    
+      let exReps = document.createElement('p');
+      exReps.className = 'lead';
+      exReps.textContent = `Reps: ${reps}`;
+      setDisplay.appendChild(exReps);
+    
+      // Add the set display to a 'sets display' container
+      document.getElementById('sets-display-container').appendChild(setDisplay);
     });
+    
 
     
-  
+    console.log(JSON.stringify(setsData)); // Add this line
+
     // Send the sets data to the server
     fetch('/api/sets', {
       method: 'POST',
@@ -219,7 +207,7 @@ document.getElementById('sets-display-container').appendChild(setDisplay);
       const setsContainer = document.getElementById('sets-container');
       setsContainer.innerHTML = '';
       // Handle the response as needed
-      clearNewSets();
+      // clearNewSets();
     })
     .catch(error => console.error('Error:', error));
 

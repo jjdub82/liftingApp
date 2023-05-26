@@ -13,8 +13,8 @@
 }
 
 .item {
-    flex-basis: 1;
-    flex-grow: 3;
+    flex-basis: 2;
+    flex-grow: 1;
     /* min-width: 400px; */
     /* min-height: 400px; */
 
@@ -123,3 +123,11 @@ form input{
 
 }
 
+#nutritionTable th:nth-child(1){
+    min-width:10rem;
+}
+
+#nutritionTable td:nth-child(1){
+    font-weight: 700;
+    font-size: 1.2rem;
+}

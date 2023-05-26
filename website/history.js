@@ -39,7 +39,16 @@ fetch('/api/sets')
                 histCard.className = 'card histCard';
                 collapse.appendChild(histCard)
 
+                const deleteDiv = document.createElement('div');
+                deleteDiv.className = 'float-end'
+                histCard.appendChild(deleteDiv)
 
+
+                const deleteBtn = document.createElement('button');
+                 deleteBtn.className = 'btn btn-danger float-end';
+                 deleteBtn.style = 'width: 2rem; margin-right: 1rem; margin-top: 1rem; margin-bottom: 1rem;'
+                 deleteBtn.textContent = 'x'
+                 deleteDiv.appendChild(deleteBtn)
 
                 const exName = document.createElement('p');
                 exName.textContent = `${set.exercise}`; 
@@ -57,10 +66,20 @@ fetch('/api/sets')
                 exReps.className = 'lead mx-4'
                 exReps.style = 'border-bottom: 1px solid lightgray; padding-botton: 5px'
                 histCard.appendChild(exReps);
-
-
-
-                
+                console.log(set);
+                deleteBtn.addEventListener('click', () => {
+                    console.log("Deleting set with id:", set.id); // Log the set id
+                    fetch(`/api/sets/${set.id}`, {
+                        method: 'DELETE',
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data.message);
+                        // Remove the set from the DOM
+                        histCard.remove();
+                    })
+                    .catch(error => console.error('Error:', error));
+                });
 
             });
 
@@ -71,3 +90,7 @@ fetch('/api/sets')
         });
     })
     .catch(error => console.error('Error:', error));
+
+
+
+    
